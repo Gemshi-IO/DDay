@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — DaysLeft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0c;
+            --bg-card: #121214;
+            --bg-elevated: #1a1a1e;
+            --text-primary: #f2f2f5;
+            --text-secondary: #a1a1a8;
+            --text-muted: #6b6b72;
+            --accent: #00d4aa;
+            --accent-soft: rgba(0, 212, 170, 0.15);
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.65;
+            min-height: 100vh;
+        }
+
+        /* Subtle gradient overlay for depth */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60vh;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, var(--accent-soft), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Logo and header */
+        .logo-wrap {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo {
+            width: 88px;
+            height: 88px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        .app-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .page-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Content card */
+        .content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.75rem;
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .content p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .nutshell {
+            margin-top: 1.5rem;
+            padding: 1.25rem 1.25rem 1.25rem 1rem;
+            background: var(--accent-soft);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .contact {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .updated {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 480px) {
+            .container {
+                padding: 3rem 1.5rem 5rem;
+            }
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            .content {
+                padding: 2.25rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="eula.html">EULA</a>
+        </nav>
+        <header class="logo-wrap">
+            <img src="DaysleftLaunchscreenIMG.png" alt="DaysLeft" class="logo" width="100" height="100">
+            <h1 class="app-name">DaysLeft</h1>
+            <p class="page-title">Privacy Policy</p>
+        </header>
+
+        <main class="content">
+            <p>Your privacy is important to us. This app under the name "D Day: DaysLeft" (including "D Day: Countdown") does not collect, store, or share any personal data. No user information is tracked or shared with third parties. However, during the premium subscription purchase process, Apple may collect certain information as outlined in their privacy policy.</p>
+
+            <p>The app offers a premium subscription (D-Day Pro) to unlock additional features such as extra themes and capabilities. All transactions are securely processed through Apple's in-app purchase system, and we do not have access to your payment information.</p>
+
+            <p>Although we do not collect any personal data, you have the right to request access to or deletion of your personal data if it were to be collected. For any questions regarding this privacy policy, feel free to contact me.</p>
+
+            <p class="nutshell">In a nutshell: I'm not interested in your personal life, and your data is yours alone. I'm just here to help you make the most of your days.</p>
+
+            <div class="contact">
+                <strong>Contact:</strong> <a href="mailto:gemshi@me.com">gemshi@me.com</a>
+            </div>
+            <p class="updated">Last updated: February 19, 2026</p>
+        </main>
+    </div>
+</body>
+</html>
