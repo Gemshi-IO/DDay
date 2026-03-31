@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaysLeft — Make the most of your year</title>
+    <title>D Day: Days Left | Event Countdown Widget &amp; Year Progress Tracker</title>
+    <meta name="description" content="D Day is a premium iOS event countdown app and 365-day dot matrix year tracker. Sync Apple Calendar, use Home Screen widgets, and share custom countdown images.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "D Day: Days Left",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "iOS",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gemshi",
+        "url": "https://gemshi.com"
+      },
+      "description": "A premium privacy-first iOS app featuring a days until calculator, visual year tracker, and iOS event countdown widget.",
+      "featureList": [
+        "365-day dot matrix visual year progress tracker",
+        "Sync events directly with Apple Calendar",
+        "Generate shareable high-resolution custom countdown images",
+        "Rich memory journal with tasks, checklists, photos, and voice notes",
+        "iOS Home Screen countdown rings and year matrix widgets"
+      ]
+    }
+    </script>
     <style>
         :root {
-            --bg-deep: #0a0a0c;
-            --bg-card: #121214;
-            --bg-elevated: #1a1a1e;
-            --text-primary: #f2f2f5;
-            --text-secondary: #a1a1a8;
-            --text-muted: #6b6b72;
-            --accent: #00d4aa;
-            --accent-soft: rgba(0, 212, 170, 0.15);
-            --border: rgba(255, 255, 255, 0.08);
-            --radius: 12px;
-            --radius-lg: 20px;
+            --bg-deep: #06070b;
+            --bg-panel: rgba(255, 255, 255, 0.03);
+            --text-primary: #f8fafc;
+            --text-secondary: #c4c9d4;
+            --text-muted: #8a93a5;
+            --border-soft: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.15);
+            --radius-xl: 24px;
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.35);
         }
 
         * {
@@ -29,197 +50,410 @@
         }
 
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-deep);
+            font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(1300px 700px at 50% -120px, rgba(61, 117, 255, 0.16), transparent 62%), var(--bg-deep);
             color: var(--text-primary);
-            line-height: 1.65;
+            line-height: 1.6;
             min-height: 100vh;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70vh;
-            background: radial-gradient(ellipse 80% 60% at 50% -10%, var(--accent-soft), transparent 55%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem 1.25rem 4rem;
+            padding: 1.5rem 1.25rem 4rem;
         }
 
-        .nav {
+        .top-nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
             margin-bottom: 2.5rem;
-            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 999px;
+            background: rgba(8, 10, 16, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .nav a {
+        .brand {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .top-nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
-        .nav a:hover {
-            color: var(--accent);
+        .top-nav-links a:hover {
+            color: var(--text-primary);
         }
 
-        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
         }
 
-        .hero .logo {
-            width: 96px;
-            height: 96px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto 1.25rem;
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 0.8rem;
         }
 
-        .hero .app-name {
-            font-size: 2.25rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .tagline {
-            font-size: 1.1rem;
+        .hero-subtitle {
             color: var(--text-secondary);
-            max-width: 420px;
-            margin: 0 auto 1.75rem;
+            max-width: 720px;
+            margin: 0 auto 1.6rem;
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
         }
 
-        .cta {
+        .premium-cta {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--accent);
-            color: var(--bg-deep);
-            padding: 0.75rem 1.5rem;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f8fafc;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 0.8rem 1.4rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.24);
         }
 
-        .cta:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 24px var(--accent-soft);
+        .premium-cta:hover {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 22px rgba(165, 196, 255, 0.28), 0 12px 32px rgba(0, 0, 0, 0.32);
         }
 
-        .cta svg {
-            width: 20px;
-            height: 20px;
+        .premium-cta svg {
+            width: 18px;
+            height: 18px;
         }
 
-        /* Copy block */
-        .copy {
-            text-align: center;
-            margin-bottom: 2.5rem;
+        .hero-media {
+            margin: 2rem auto 0;
+            max-width: 900px;
+            position: relative;
+            isolation: isolate;
         }
 
-        .copy p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 520px;
-            margin: 0 auto;
+        .hero-media::before {
+            content: "";
+            position: absolute;
+            width: 70%;
+            height: 52%;
+            left: 50%;
+            top: 52%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(50px);
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(99, 151, 255, 0.5), rgba(130, 97, 255, 0.22) 45%, transparent 75%);
         }
 
-        /* Screenshots - order: 10, 9, 4, 11, 7, 3, 8, 5, 6 */
-        .screenshots {
+        .hero-media img {
+            width: clamp(88px, 14vw, 150px);
+            max-width: 100%;
+            max-height: 500px;
+            height: auto;
+            border-radius: 30px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+            animation: float3d 6.5s ease-in-out infinite;
+        }
+
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
             margin-bottom: 3rem;
         }
 
-        .screenshots img {
+        .bento-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            min-height: 280px;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease;
+        }
+
+        .bento-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .bento-card.wide {
+            grid-column: span 2;
+        }
+
+        .bento-card h2 {
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.7rem;
+            max-width: 520px;
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            max-width: 480px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-visual {
+            min-height: clamp(360px, 54vw, 620px);
+        }
+
+        .card-visual img {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transform: none;
             width: 100%;
-            height: auto;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 22px 40px rgba(0, 0, 0, 0.42);
+            opacity: 0.78;
+            mask-image: linear-gradient(to top, transparent 3%, rgba(0, 0, 0, 0.62) 40%, rgba(0, 0, 0, 1) 66%);
+            -webkit-mask-image: linear-gradient(to top, transparent 3%, rgba(0, 0, 0, 0.62) 40%, rgba(0, 0, 0, 1) 66%);
+        }
+
+        .card-square img {
+            width: 100%;
+            margin-top: 1.1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             display: block;
+        }
+
+        .card-privacy {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .card-privacy-copy {
+            max-width: 56%;
+        }
+
+        .card-privacy-media {
+            width: min(42%, 430px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+            flex-shrink: 0;
+        }
+
+        .card-privacy-media img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .faq-section {
+            margin-bottom: 2.8rem;
+            border-top: 1px solid var(--border-soft);
+            padding-top: 1.2rem;
+        }
+
+        .faq-section h3 {
+            margin-bottom: 0.9rem;
+            letter-spacing: -0.01em;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-soft);
+            padding: 0.1rem 0;
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 1rem 2.2rem 1rem 0;
+            position: relative;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            position: absolute;
+            right: 0.2rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.2s ease;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .faq-item[open] summary::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            padding: 0 0 1rem;
+            max-width: 880px;
         }
 
         .footer {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.85rem;
+            border-top: 1px solid var(--border-soft);
+            padding-top: 1.5rem;
             color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.1rem;
+            margin-bottom: 0.85rem;
         }
 
         .footer a {
-            color: var(--accent);
+            color: #b7d2ff;
             text-decoration: none;
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .footer-brand a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            white-space: nowrap;
         }
 
         .footer a:hover {
             text-decoration: underline;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.25rem;
-            margin-bottom: 0.5rem;
+        @keyframes float3d {
+            0%, 100% {
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotateX(2deg) rotateY(-2deg);
+            }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 860px) {
+            .top-nav {
+                border-radius: 18px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-card.wide {
+                grid-column: span 1;
+            }
+
+            .card-visual img {
+                bottom: 0;
+            }
+
+            .card-privacy {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .card-privacy-copy,
+            .card-privacy-media {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 620px) {
             .container {
-                padding: 1.5rem 1rem 3rem;
+                padding: 1rem 0.95rem 3rem;
             }
 
-            .hero .app-name {
-                font-size: 1.75rem;
-            }
-
-            .hero .tagline {
-                font-size: 1rem;
-            }
-
-            .screenshots {
-                grid-template-columns: repeat(2, 1fr);
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 0.75rem;
             }
-        }
 
-        @media (min-width: 900px) {
-            .screenshots {
-                gap: 1.25rem;
+            .top-nav-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .bento-card {
+                min-height: 250px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="eula.html">EULA</a>
+        <nav class="top-nav" aria-label="Main navigation">
+            <a href="index.html" class="brand">D Day: Days Left</a>
+            <div class="top-nav-links">
+                <a href="#features">Features</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="#faq">Help</a>
+            </div>
         </nav>
 
         <header class="hero">
-            <img src="images/DaysleftLaunchscreenIMG.png" alt="DaysLeft" class="logo" width="96" height="96">
-            <h1 class="app-name">DaysLeft</h1>
-            <p class="tagline">See your year at a glance. Track what matters and make every day count.</p>
-            <a href="https://apps.apple.com/app/d-day-event-countdown-widget/id6759345908" class="cta" id="app-store-cta">
+            <h1>Your Year. Visualized.</h1>
+            <p class="hero-subtitle">The premium iOS event countdown widget and visual year tracker. Make every single day count.</p>
+            <div class="hero-media">
+                <img src="images/DaysleftLaunchscreenIMG.png" alt="iOS event countdown widget and 365-day dot matrix year progress tracker" loading="eager">
+            </div>
+            <a href="https://apps.apple.com/app/d-day-countdown-timeleft/id6759345908" class="premium-cta" id="app-store-cta">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
@@ -227,20 +461,58 @@
             </a>
         </header>
 
-        <section class="copy">
-            <p>DaysLeft turns your year into a visual grid. Mark occasions, count down to big days, and watch time in a way that keeps you focused. Simple, beautiful, and built for how you think.</p>
+        <section class="bento-grid" id="features" aria-label="D Day feature highlights">
+            <article class="bento-card wide card-visual reveal-card">
+                <h2>The Visual Grid</h2>
+                <p>Visualize your whole year as a 365-day dot matrix timeline. Instantly track your year progress and see what's coming next.</p>
+                <img src="images/Frame10.webp" alt="Visual year tracker showing a 365-day dot matrix timeline" loading="lazy">
+            </article>
+
+            <article class="bento-card card-square reveal-card">
+                <h2>Event Countdowns</h2>
+                <p>Count down to birthdays, vacations, and weddings. Sync directly with Apple Calendar and turn milestones into a rich memory journal.</p>
+                <img src="images/Frame3.webp" alt="Days until calculator for vacations and weddings synced with Apple Calendar" loading="lazy">
+            </article>
+
+            <article class="bento-card card-square reveal-card">
+                <h2>Home Screen Widgets</h2>
+                <p>Track time without opening the app.</p>
+                <img src="images/Frame8.webp" alt="iOS Home Screen countdown rings and year matrix widgets" loading="lazy">
+            </article>
+
+            <article class="bento-card wide card-privacy reveal-card">
+                <div class="card-privacy-copy">
+                    <h2>Share Countdowns Together</h2>
+                    <p>Export your countdowns as stunning, high-resolution images complete with custom photos and notes to easily share to Instagram or WhatsApp.</p>
+                </div>
+                <div class="card-privacy-media">
+                    <img src="images/FrameShare.webp" alt="Shareable high-resolution custom countdown images for Instagram and WhatsApp" loading="lazy">
+                </div>
+            </article>
         </section>
 
-        <section class="screenshots" aria-label="App screenshots">
-            <img src="images/Frame10.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame9.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame4.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame11.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame7.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame3.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame8.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame5.jpeg" alt="DaysLeft app screenshot" loading="lazy">
-            <img src="images/Frame6.jpeg" alt="DaysLeft app screenshot" loading="lazy">
+        <section class="faq-section" id="faq" aria-label="Frequently asked questions">
+            <h3>FAQ</h3>
+            <details class="faq-item">
+                <summary>Is D Day a private countdown app?</summary>
+                <p>Yes. D Day is designed with absolute privacy in mind. There are no user accounts, no ads, and no data tracking. Your event countdowns and dates stay entirely on your device.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Does it include iOS Home Screen widgets?</summary>
+                <p>Absolutely. You can add beautifully designed event countdown widgets directly to your iPhone or iPad Home Screen to track how many days are left until your important dates without opening the app.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How does the visual year tracker work?</summary>
+                <p>Unlike a standard calendar, D Day turns your entire year into a single visual grid. It allows you to see exactly how much of the year has passed and how many days are left, helping you stay focused and make every day count.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Can I sync my events with Apple Calendar?</summary>
+                <p>Yes! D Day features seamless Apple Calendar sync. You can import your existing schedule directly into the app so your event countdowns and year progress matrix are perfectly aligned.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How do I share my countdowns with friends?</summary>
+                <p>You can generate and share high-resolution, custom countdown images straight to Instagram, WhatsApp, or iMessage in one tap. You can even include custom photos, checklists, and notes in your shared images.</p>
+            </details>
         </section>
 
         <footer class="footer">
@@ -249,8 +521,28 @@
                 <a href="privacy.html">Privacy</a>
                 <a href="eula.html">EULA</a>
             </div>
-            <p>© DaysLeft. All rights reserved.</p>
+            <p class="footer-brand">
+                <span>Discover other apps made by</span>
+                <a href="https://gemshi.com" target="_blank" rel="noopener noreferrer">
+                    <img src="images/GemshiLogoDark.png" alt="Gemshi logo">
+                    Gemshi
+                </a>
+            </p>
+            <p>© D Day: Days Left. All rights reserved.</p>
         </footer>
     </div>
+    <script>
+        const revealCards = document.querySelectorAll(".reveal-card");
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.16, rootMargin: "0px 0px -24px 0px" });
+
+        revealCards.forEach((card) => revealObserver.observe(card));
+    </script>
 </body>
 </html>
